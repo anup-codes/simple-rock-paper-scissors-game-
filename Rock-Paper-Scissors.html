@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rock paper scissors</title>
+  <style>
+
+    body {
+      background-color: #222233;
+      color: #FFFFFF;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    button {
+     
+      font-size: 20px;
+      font-weight: bold;
+      height: 80px;
+      width: 200px;
+      background-color: #4CAF50;
+      color: white;
+      border: goldenrod 3px solid;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 2px 4px 8px grey;
+    }
+    button:hover {
+      border: goldenrod 3px dotted;
+      background-color: #45a049;
+      box-shadow: 4px 8px 16px grey;
+    }
+    p{
+      color: #F0F0F0;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    div{
+      margin: 20px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body> 
+<p> ROCK PAPER SCISSORS</p>
+
+<div>
+    <button onclick="
+    playgame('ROCK');
+    ">ROCK</button>
+</div>
+
+
+<div>
+   <button onclick="
+   playgame('PAPER');
+   ">PAPER</button>
+</div> 
+
+
+ <div>
+   <button  onclick="
+    playgame('SCISSORS');
+   ">SCISSORS</button>
+ </div>
+
+ <p id="js-result"> </p>
+ <p id="js-move"> </p>
+ <p id="js-score"> </p>
+
+ <div>
+  <button onclick="
+  score.wins = 0; score.losses = 0; score.ties = 0;
+  localStorage.removeItem('score');
+  updateScoreElement();
+  ">RESET SCORE</button>
+ </div>
+
+
+
+    <script>
+     const score = JSON.parse(localStorage.getItem('score')) || {
+      wins: 0,  
+      losses: 0,
+      ties: 0
+    };
+
+    updateScoreElement();
+
+    // if (!score) {
+    //   score = {
+    //     wins: 0,
+    //     losses: 0,
+    //     ties: 0
+    //   };
+
+    
+
+       function playgame(playermove) { 
+       const computermove = pickcomputermove();
+ 
+       let result='';
+
+       if(playermove === 'SCISSORS'){
+          if (computermove === 'ROCK'){
+            result = 'You Lose!';
+          } else if (computermove === 'PAPER'){
+            result = 'You Won!';
+          } else {
+            result = 'It is a tie!';
+          }
+
+          // alert(`${result}. Computer chose: ${computermove}. You Chose ${'SCISSORS'}`);  
+          }
+
+       else if (playermove === 'PAPER'){
+            if (computermove === 'ROCK'){
+              result = 'You Won!';
+            } else if (computermove === 'PAPER'){
+              result = 'It is a tie!';
+            } else {
+              result = 'You Lose!';
+            }
+          }
+
+        else if (playermove === 'ROCK'){
+              if (computermove === 'ROCK'){
+                result = 'It is a tie!';
+              } else if (computermove === 'PAPER'){
+                result = 'You Lose!';
+              } else {
+                result = 'You Won!';
+              }
+            }
+
+            
+        if(result === 'You Won!'){
+                  score.wins += 1;
+                } else if (result === 'You Lose!'){
+                  score.losses += 1;
+                } else if (result === 'It is a tie!'){
+                  score.ties += 1;
+                } 
+         
+          localStorage.setItem('score', JSON.stringify(score));
+
+          updateScoreElement();
+
+
+           document.querySelector('#js-result').innerHTML = result;
+
+          document.querySelector('#js-move').innerHTML=`Computer chose: ${computermove}.
+          You Chose ${playermove}`; 
+            
+          }
+
+       function updateScoreElement() {
+         document.querySelector('#js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+       }
+
+      function pickcomputermove() {
+      const randomNumber = Math.random();
+
+      let computermove ='';
+
+          if (randomNumber >= 0  &&  randomNumber < 1/3){
+            computermove ='ROCK';
+          } else if (randomNumber >= 1/3  &&  randomNumber < 2/3){
+            computermove ='PAPER';
+          }
+          else {
+            computermove ='SCISSORS';
+          }
+      
+      return computermove; //get a value out of the function
+      }
+    </script>
+    
+</body>
+</html>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
