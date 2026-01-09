@@ -32,3 +32,4 @@ JavaScript conditionals and functions
 DOM manipulation
 
 Basic game logic implementation
+![alt text](<rock-paper-sccisors game image.jpeg>)
