@@ -29,7 +29,5 @@ This project helped me understand:
 
 ---
 
-## 👨‍💻 Author
-**Anup Kumar**
 
 
