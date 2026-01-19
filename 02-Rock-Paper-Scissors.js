@@ -30,7 +30,7 @@ function autoPlay() {
  clearInterval(intervalId);
  isAutoPlaying= false;
 }
-}
+} 
 
 document.querySelector('.js-rock-button').addEventListener('click',() => {
   playGame('rock');
@@ -128,3 +128,11 @@ function pickComputerMove() {
 
   return computerMove;
 }
+
+document.querySelector('.reset-score-button').addEventListener('click',() => {
+  score.wins = 0;
+  score.losses = 0;
+  score.ties = 0;
+  localStorage.removeItem('score');
+  updateScoreElement();
+});
